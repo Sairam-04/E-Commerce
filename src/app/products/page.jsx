@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import productsData from "../../data/products.json";
-import Products from "@/components/Products";
+import Products from "@/app/products/components/Products";
 import Header from "@/components/Header";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
@@ -14,7 +14,7 @@ const page = () => {
     .fill()
     .map((_, index) => index + 1);
   const lastIndex = currentPage * PRODUCTS_PER_PAGE;
-  const firstIndex = lastIndex - PRODUCTS_PER_PAGE + 1;
+  const firstIndex = lastIndex - PRODUCTS_PER_PAGE;
   const previousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((page) => page - 1);

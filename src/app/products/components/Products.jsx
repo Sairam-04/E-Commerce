@@ -13,6 +13,7 @@ const Products = ({products}) => {
             brand={product.brand}
             thumbnail={product.thumbnail}
             price={product.price}
+            discountPercentage={product.discountPercentage}
           />
         ))}
     </div>

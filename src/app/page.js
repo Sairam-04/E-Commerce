@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Products from "@/components/Products";
+import Products from "@/app/products/components/Products";
 import Link from "next/link";
 import productsData from "../data/products.json";
 

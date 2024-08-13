@@ -12,12 +12,7 @@ const Header = () => {
   return (
     <div className="flex sticky top-0 left-0 justify-between items-center h-[10vh] bg-white z-10 px-5 shadow-lg">
       <Link href="/" className="flex">
-        <Image
-          src={logo}
-          alt="logo"
-          width={120}
-          height={50}
-        />
+        <Image src={logo} alt="logo" width={120} height={50} />
       </Link>
       <Search />
       <NavItems />
@@ -54,8 +49,10 @@ const NavItems = () => {
         <li className="cursor-pointer">Home</li>
         <li className="cursor-pointer">About</li>
         <li className="cursor-pointer">ContactUs</li>
-        <li className="cursor-pointer flex gap-2 items-center">
-          <ShoppingBagIcon className="size-6 text-black" /> Cart
+        <li className="cursor-pointer">
+          <Link href="/cart" className="flex gap-2 items-center">
+            <ShoppingBagIcon className="size-6 text-black" /> Cart
+          </Link>
         </li>
         <li className="cursor-pointer">
           <UserIcon className="size-6 text-black" />
