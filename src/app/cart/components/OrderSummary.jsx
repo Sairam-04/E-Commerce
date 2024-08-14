@@ -45,7 +45,7 @@ const OrderSummary = ({ items }) => {
           Discount/PromoCode
         </label>
         <div className="text-xs">
-          Apply "StoreVilla" PromoCode for Discount of 20% on Total Amount
+          Apply <span className="font-bold text-sm px-1">StoreVilla</span> PromoCode for Discount of 20% on Total Amount
         </div>
         <div className="flex justify-between">
           <input
