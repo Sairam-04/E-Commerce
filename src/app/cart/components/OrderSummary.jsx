@@ -33,7 +33,7 @@ const OrderSummary = ({ items }) => {
     });
     const timeoutId = setTimeout(() => {
       router.push("/");
-    }, 4000); 
+    }, 2000); 
   
     return () => clearTimeout(timeoutId);
   }

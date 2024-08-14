@@ -7,7 +7,7 @@ import SingleProduct from "../components/SingleProduct";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const page = () => {
+const ProductPage = () => {
   const { id } = useParams();
   const product = getProduct(id);
   return (
@@ -31,4 +31,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProductPage;

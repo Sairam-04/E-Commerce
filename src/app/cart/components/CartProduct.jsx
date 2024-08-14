@@ -1,4 +1,3 @@
-import { addQuantity, subQuantity } from "@/app/lib/features/cart/cartSlice";
 import { formatINRCurrency } from "@/utils/formatCurrency";
 import Image from "next/image";
 import React from "react";

@@ -67,7 +67,7 @@ const SingleProduct = ({
     });
     const timeoutId = setTimeout(() => {
       router.push("/cart");
-    }, 4000); 
+    }, 2000); 
   
     return () => clearTimeout(timeoutId);
   };

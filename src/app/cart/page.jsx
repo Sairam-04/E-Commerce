@@ -17,7 +17,7 @@ import Image from "next/image";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const page = () => {
+const CartPage = () => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.cart.cartItems);
   const addClick = (item) => {
@@ -115,4 +115,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CartPage;

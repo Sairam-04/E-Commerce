@@ -6,7 +6,7 @@ import Products from "@/app/products/components/Products";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import SearchContext from "../lib/context/SearchContext";
 
-const Page = () => {
+const ProductsPage = () => {
   const { searchText } = useContext(SearchContext);
   const PRODUCTS_PER_PAGE = 10;
   const [currentPage, setCurrentPage] = useState(1);
@@ -92,4 +92,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default ProductsPage;
