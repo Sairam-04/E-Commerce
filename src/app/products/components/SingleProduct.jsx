@@ -6,6 +6,8 @@ import ProductDetailsDesc from "./ProductDetailsDesc";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/app/lib/features/cart/cartSlice";
 import { discountAmount } from "@/utils/discountAmount";
+import { Bounce, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const SingleProduct = ({
   images,
@@ -19,9 +21,10 @@ const SingleProduct = ({
   thumbnail,
   discountPercentage,
   id,
-  stock
+  stock,
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const cartData = {
     thumbnail,
     title,
@@ -29,8 +32,9 @@ const SingleProduct = ({
     price,
     id,
     stock,
-    "quantity": 1
-  } 
+    discountPercentage,
+    quantity: 1,
+  };
   const [selectedImg, setSelectedImg] = useState(0);
   const changeImg = (index) => {
     setSelectedImg(index);
@@ -51,12 +55,23 @@ const SingleProduct = ({
 
   const addToCart = (item) => {
     dispatch(addItem(item));
+    toast.success(`${item.title} added to the Cart`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      transition: Bounce,
+    });
+    router.push("/cart");
   };
   return (
-    <div className="w-full flex-col">
-      <div className="flex w-4/5 bg-white mx-auto my-7">
-        <div className="flex gap-4 w-2/5">
-          <div className="flex flex-col w-[20%] gap-5">
+    <div className="w-full flex-col sm:p-0 p-2">
+      <div className="flex sm:flex-row flex-col sm:w-4/5 w-full bg-white mx-auto my-7">
+        <div className="flex gap-4 sm:w-2/5 w-full">
+          <div className="flex flex-col sm:w-[20%] w-[30%] gap-5">
             {images &&
               images.map((ele, index) => (
                 <img
@@ -69,7 +84,7 @@ const SingleProduct = ({
                 />
               ))}
           </div>
-          <div className="w-[80%]">
+          <div className="sm:w-[80%] w-[70%]">
             <img
               src={images && images[selectedImg]}
               className="w-full object-cover"
@@ -77,17 +92,28 @@ const SingleProduct = ({
             />
           </div>
         </div>
-        <div className="w-3/5 flex flex-col gap-3 p-2">
+        <div className="sm:w-3/5 w-full flex flex-col gap-3 p-2">
           <div className="font-bold text-2xl">
-            {title} - {description}
+            {title} - {description} {
+              stock === 0 && <div className="text-xl font-semibold text-orange-500">Out of Stock</div>
+            }
           </div>
-          <div className="price flex gap-5 items-center">
+          <div className="price flex sm:flex-row flex-col gap-5 sm:items-center">
             <div className="text-xl text-bold flex gap-3 items-center">
-              <span className="line-through opacity-30">₹ {formatINRCurrency(price)}</span>
-              <span>₹ {formatINRCurrency(Math.round(discountAmount(price, discountPercentage)))}</span>
-              <span className="font-semibold text-sm text-green-600">{discountPercentage} % Off</span>
+              <span className="line-through opacity-30">
+                ₹ {formatINRCurrency(price)}
+              </span>
+              <span>
+                ₹{" "}
+                {formatINRCurrency(
+                  Math.round(discountAmount(price, discountPercentage))
+                )}
+              </span>
+              <span className="font-semibold text-sm text-green-600">
+                {discountPercentage} % Off
+              </span>
             </div>
-            <div className="flex gap-1 items-center text-white px-1 py-0.5 text-sm rounded bg-green-700">
+            <div className="flex w-fit gap-1 items-center text-white px-1 py-0.5 text-sm rounded bg-green-700">
               <StarIcon className="size-3" />
               {rating}
             </div>
@@ -101,7 +127,7 @@ const SingleProduct = ({
                     className={`${
                       ele === "colors"
                         ? "w-5 h-5 rounded-full"
-                        : "px-3 py-2 rounded"
+                        : "sm:px-3 sm:py-2 p-1 rounded"
                     } ${
                       selected[ele] === item ? "ring-1 ring-black" : ""
                     } cursor-pointer`}
@@ -119,11 +145,13 @@ const SingleProduct = ({
           <p className="text-gray-500">{fulldesc}</p>
           <div className="flex">
             <button
-              onClick={()=>addToCart(cartData)}
-              className="bg-black px-10 py-3 text-white rounded-lg"
+              onClick={() => addToCart(cartData)}
+              disabled={stock === 0}
+              className="bg-black px-10 py-3 text-white rounded-lg disabled:opacity-30 disabled:cursor-not-allowed"
             >
               Add to Cart
             </button>
+            
           </div>
         </div>
       </div>

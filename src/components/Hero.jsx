@@ -2,7 +2,7 @@ import Image from "next/image";
 import HeroImg from "../assets/HeroImg.svg";
 const Hero = () => {
   return (
-    <div className="w-full h-[70vh] bg-gradient-to-r from-zinc-900 to-zinc-800">
+    <div className="w-full h-[70vh] bg-gradient-to-r text-white from-zinc-900 to-zinc-800">
       <div className="sm:w-4/5 w-full h-full mx-auto flex">
         <div className="sm:w-1/2 w-full h-full flex flex-col gap-4 justify-center text-center sm:text-left">
           <div className="text-4xl text-gray-400 font-semibold">Welcome to ShopVerse</div>

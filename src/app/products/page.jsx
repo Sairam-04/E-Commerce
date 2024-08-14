@@ -28,17 +28,17 @@ const page = () => {
   const changePage = (page) => {
     setCurrentPage(page);
   };
-  const [products, setProducts] = useState(productsData)
+  const [products, setProducts] = useState(productsData);
   const products_data = products.slice(firstIndex, lastIndex);
 
-  const filterByPrice = () =>{
-    const filtered = products.filter((ele) => ele.price <= 100)
+  const filterByPrice = () => {
+    const filtered = products.filter((ele) => ele.price <= 100);
     setProducts(filtered);
-  }
+  };
 
   return (
-    <div className="bg-white relative text-black">
-      <Header />
+    <>
+      {" "}
       {/* <button onClick={filterByPrice}>Filter</button> */}
       <Products products={products_data} />
       <div className="flex text-black py-4 justify-center gap-3">
@@ -54,7 +54,9 @@ const page = () => {
             key={item}
             onClick={() => changePage(item)}
             className={`px-4 py-1 text-base border-[.1px] rounded border-black ${
-              currentPage === item ? "bg-black text-white" : "bg-white text-black"
+              currentPage === item
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             {item}
@@ -63,13 +65,12 @@ const page = () => {
         <button
           onClick={nextPage}
           disabled={currentPage === PRODUCTS_PER_PAGE}
-
           className="px-4 py-1 disabled:opacity-30 text-base rounded bg-white border border-black"
         >
           <ChevronRightIcon className="size-4 text-black" />
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

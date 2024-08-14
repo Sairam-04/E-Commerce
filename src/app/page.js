@@ -9,7 +9,6 @@ export default function Home() {
   const products = productsData.slice(0, 12);
   return (
     <div className="w-full bg-slate-100 relative">
-      <Header />
       <Hero />
       <div>
         <div className="w-4/5 mx-auto text-2xl font-semibold py-4 text-gray-500">
