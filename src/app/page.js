@@ -3,6 +3,8 @@ import Hero from "@/components/Hero";
 import Products from "@/app/products/components/Products";
 import Link from "next/link";
 import productsData from "../data/products.json";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Home() {
@@ -16,11 +18,12 @@ export default function Home() {
         </div>
         <Products products={products} />
         <div className="text-center py-6">
-          <Link href="/products" className="bg-black px-4 py-3 rounded">
+          <Link href="/products" className="bg-black text-white px-4 py-3 rounded">
             View More Products
           </Link>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

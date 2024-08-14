@@ -4,7 +4,6 @@ import { getProduct } from "@/utils/getProduct";
 import { useParams } from "next/navigation";
 import React from "react";
 import SingleProduct from "../components/SingleProduct";
-import Header from "@/components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

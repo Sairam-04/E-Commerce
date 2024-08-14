@@ -1,5 +1,6 @@
 import Image from "next/image";
 import HeroImg from "../assets/HeroImg.svg";
+import Link from "next/link";
 const Hero = () => {
   return (
     <div className="w-full h-[70vh] bg-gradient-to-r text-white from-zinc-900 to-zinc-800">
@@ -13,7 +14,7 @@ const Hero = () => {
             carefully curated to meet your lifestyle needs.
           </div>
           <div className="py-4">
-            <button className="bg-none border-white shadow-2xl text-sm border px-8 py-3 rounded">Shop Now</button>
+            <Link href="/products" className="bg-none border-white shadow-2xl text-sm border px-8 py-3 rounded">Shop Now</Link>
           </div>
         </div>
         <div className="w-[40%] h-full sm:flex hidden items-end justify-end relative">

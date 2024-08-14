@@ -1,12 +1,15 @@
 import { calculateAmount, discountAmount } from "@/utils/discountAmount";
 import { formatINRCurrency } from "@/utils/formatCurrency";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { Bounce, toast } from "react-toastify";
 
 const OrderSummary = ({ items }) => {
   const ShippingCost = 80;
   const SubTotal = calculateAmount(items);
   const [promocode, setPromoCode] = useState();
   const [success, setSuccess] = useState(false);
+  const router = useRouter();
   const handleChange = (e) => {
     setPromoCode(e.target.value);
   };
@@ -17,6 +20,23 @@ const OrderSummary = ({ items }) => {
       setSuccess(false);
     }
   };
+  const clickCheckout = () =>{
+    toast.success(`You have CheckedOut`, {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      transition: Bounce,
+    });
+    const timeoutId = setTimeout(() => {
+      router.push("/");
+    }, 4000); 
+  
+    return () => clearTimeout(timeoutId);
+  }
   return (
     <div className="w-full border p-4 shadow-lg bg-zinc-100 rounded-lg flex flex-col gap-3">
       <h1 className="text-xl font-semibold">Order Summary</h1>
@@ -70,7 +90,7 @@ const OrderSummary = ({ items }) => {
         )}
       </div>
       <div>
-        <button className="bg-black text-white w-full rounded py-3 my-2">
+        <button onClick={clickCheckout} className="bg-black text-white w-full rounded py-3 my-2">
           Checkout
         </button>
       </div>

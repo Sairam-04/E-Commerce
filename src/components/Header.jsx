@@ -6,11 +6,13 @@ import {
   UserIcon,
   ShoppingBagIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import SearchContext from "@/app/lib/context/SearchContext";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const cartItems = useSelector((store) => store.cart.cartItems);
@@ -24,7 +26,7 @@ const Header = () => {
         <Image src={logo} alt="logo" width={40} height={40} />
         <span className="text-black text-xl font-bold">StoreVilla</span>
       </Link>
-      <div className="sm:block hidden">
+      <div className="sm:block hidden w-2/5">
         <Search />
       </div>
       <NavItems />
@@ -53,6 +55,12 @@ const Header = () => {
 };
 
 const Search = () => {
+  const { search, setSearch } = useContext(SearchContext);
+  const router = useRouter();
+  const handleChange = (e) =>{
+    setSearch(e.target.value)
+    router.push("/products")
+  }
   return (
     <div className="relative flex items-center w-full h-10 rounded-lg shadow-sm bg-gray-100 overflow-hidden">
       <div className="grid place-items-center h-full w-12 text-gray-300">
@@ -63,6 +71,8 @@ const Search = () => {
         className="h-full bg-gray-100 w-full outline-none text-sm text-gray-700 pr-2"
         type="text"
         id="search"
+        value={search}
+        onChange={handleChange}
         placeholder="Search for Products"
       />
     </div>
@@ -103,40 +113,35 @@ const NavItems = () => {
   );
 };
 
-const NavList = () => {
+const NavList = ({ openHamburger }) => {
   return (
     <>
-      <li className="cursor-pointer">
+      <li className="cursor-pointer" onClick={openHamburger}>
         <Link href="/" className="hover:text-semibold hover:text-gray-700">
           Home
         </Link>
       </li>
-      <li className="cursor-pointer">
-        <Link href="/about" className="hover:text-semibold hover:text-gray-700">
-          About
+      <li className="cursor-pointer" onClick={openHamburger}>
+        <Link href="/products" className="hover:text-semibold hover:text-gray-700">
+          Products
         </Link>
       </li>
-      <li className="cursor-pointer">
-        <Link
-          href="/contact"
-          className="hover:text-semibold hover:text-gray-700"
-        >
-          Contact Us
-        </Link>
-      </li>
+      
     </>
   );
 };
 
-const NavHamMenu = ({openHamburger}) => {
+const NavHamMenu = ({ openHamburger }) => {
   return (
     <div className="w-4/5 bg-gray-300 rounded pt-2 pb-4 px-2 flex flex-col absolute top-14 right-2">
-      <div onClick={openHamburger} className="flex justify-end py-2"> <XMarkIcon className="size-6 text-black hover:text-red-500" /></div>
+      <div onClick={openHamburger} className="flex justify-end py-2">
+        <XMarkIcon className="size-6 text-black hover:text-red-500" />
+      </div>
       <div className="py-2">
-      <Search />
+        <Search />
       </div>
       <div className="flex flex-col gap-3 list-none">
-        <NavList />
+        <NavList openHamburger={openHamburger} />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { addQuantity, subQuantity } from "@/app/lib/features/cart/cartSlice";
 import { formatINRCurrency } from "@/utils/formatCurrency";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { discountAmount } from "@/utils/discountAmount";
 
@@ -68,7 +68,7 @@ const CartProduct = ({
         </button>
       </div>
       <div className="md:w-[10%] flex md:justify-end mt-4 md:mt-0">
-        <button onClick={() => removeItemClick({ id })}>
+        <button onClick={() => removeItemClick({ id }, title)}>
           <XCircleIcon className="md:block hidden size-8 text-red-500" />
           <span className="md:hidden block bg-red-500 text-white px-4 py-1.5 rounded">
             Remove Item

@@ -57,7 +57,7 @@ const SingleProduct = ({
     dispatch(addItem(item));
     toast.success(`${item.title} added to the Cart`, {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 4000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -65,7 +65,11 @@ const SingleProduct = ({
       theme: "colored",
       transition: Bounce,
     });
-    router.push("/cart");
+    const timeoutId = setTimeout(() => {
+      router.push("/cart");
+    }, 4000); 
+  
+    return () => clearTimeout(timeoutId);
   };
   return (
     <div className="w-full flex-col sm:p-0 p-2">
