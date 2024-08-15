@@ -1,5 +1,5 @@
 export function discountAmount(price, discount){
-    return price - (price * discount / 100);
+    return Math.round(price - (price * discount / 100));
 }
 
 
@@ -8,7 +8,7 @@ export function calculateAmount(cartItems){
         const {price, discountPercentage, quantity} = item;
         const amount = discountAmount(price * quantity, discountPercentage)
         totalAmount += amount ;
-        return totalAmount
+        return Math.round(totalAmount)
     }, 0)
     return total
 }

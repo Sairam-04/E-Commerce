@@ -8,7 +8,7 @@ import SearchContext from "../lib/context/SearchContext";
 
 const ProductsPage = () => {
   const { searchText } = useContext(SearchContext);
-  const PRODUCTS_PER_PAGE = 10;
+  const PRODUCTS_PER_PAGE = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredProducts, setFilteredProducts] = useState(productsData);
   const [paginatedProducts, setPaginatedProducts] = useState([]);

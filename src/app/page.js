@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Home() {
-  const products = productsData.slice(0, 12);
+  const products = productsData.slice(0, 8);
   return (
     <div className="w-full bg-slate-100 relative">
       <Hero />
